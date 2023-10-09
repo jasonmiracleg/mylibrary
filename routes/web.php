@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index', [
         "pagetitle" => "My Library",
-        "maintitle" => "This is My Library"
+        "maintitle" => "This is My Library",
+        "activeHome" => "active"
     ]);
 });
 
@@ -29,7 +30,8 @@ Route::view(
     'about',
     [
         "pagetitle" => "About Us",
-        "maintitle" => "About My Library"
+        "maintitle" => "About My Library",
+        "activeAbout" => "active"
     ]
 );
 
@@ -38,6 +40,7 @@ Route::view(
     'contact',
     [
         "pagetitle" => "Contact Us",
-        "maintitle" => "Contact Us"
+        "maintitle" => "Contact Us",
+        "activeContact" => "active"
     ]
 );
