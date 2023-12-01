@@ -13,7 +13,15 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        return view(
+            'library',
+            [
+                'pagetitle' => 'Library',
+                'activeLibrary' => 'active',
+                'maintitle' => 'Books',
+                'books' => Book::all()
+            ]
+        );
     }
 
     /**

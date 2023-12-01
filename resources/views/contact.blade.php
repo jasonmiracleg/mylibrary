@@ -1,7 +1,7 @@
-{{-- @extends('layouts.template')
-@section('layout_content') --}}
-<x-frame>
-    <x-slot:layout_pagetitle>
+@extends('layouts.template')
+@section('layout_content')
+    {{-- <x-frame> --}}
+    {{-- <x-slot:layout_pagetitle>
         {{ $pagetitle }}
     </x-slot:layout_pagetitle>
 
@@ -11,7 +11,7 @@
 
     <x-slot:layout_tagline>
         Welcome to our library
-    </x-slot:layout_tagline>
+    </x-slot:layout_tagline> --}}
     <table>
         <tr>
             <td>Email</td>
@@ -26,8 +26,8 @@
             <td>Main Street 123, Surabaya</td>
         </tr>
     </table>
-    <x-mybutton>
+    {{-- <x-mybutton>
         Contact Us
     </x-mybutton>
-</x-frame>
-{{-- @endsection --}}
+</x-frame> --}}
+@endsection

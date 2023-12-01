@@ -21,13 +21,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ $activeHome ?? '' }}" aria-current="page" href="/">Home</a>
+                        <a class="nav-link {{ $activeHome ?? '' }}" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ $activeAbout ?? '' }}" href="/about">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ $activeContact ?? '' }}" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $activeLibrary ?? '' }}" href="/library">Library</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">

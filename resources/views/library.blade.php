@@ -21,7 +21,7 @@
                     <td>{{ $book['writer_name'] }}</td>
                     <td>{{ $book['publisher'] }}</td>
                 </tr>
-                $counter++
+                @php($counter++)
             @endforeach
         </tbody>
     </table>

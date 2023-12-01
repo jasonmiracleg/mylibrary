@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +45,5 @@ Route::view(
         "activeContact" => "active"
     ]
 );
+
+Route::get('/library', [BookController::class, 'index']);
