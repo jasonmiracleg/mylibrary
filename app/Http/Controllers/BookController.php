@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Models\Writer;
 
 class BookController extends Controller
 {
@@ -43,9 +44,17 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(Writer $writer)
     {
-        //
+        return view(
+            'bookWriter',
+            [
+                'pagetitle' => 'Book Info',
+                'activeLibrary' => 'active',
+                'maintitle' => 'The Writer',
+                'writer' => $writer
+            ]
+        );
     }
 
     /**

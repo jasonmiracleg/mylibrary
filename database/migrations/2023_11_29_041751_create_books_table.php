@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Writer;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -16,8 +17,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->text('synopsis');
-            $table->string('writer_name');
             $table->string('publisher');
+            $table->foreignId('writer_id')->constrained('writers');
         });
     }
 

@@ -47,3 +47,4 @@ Route::view(
 );
 
 Route::get('/library', [BookController::class, 'index']);
+Route::get('/library/{writer}', [BookController::class, 'show']);

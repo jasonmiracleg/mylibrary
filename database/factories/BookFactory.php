@@ -19,8 +19,8 @@ class BookFactory extends Factory
         return [
             'title' => fake()->word(),
             'synopsis' => fake()->text(),
-            'writer_name' => fake()->name(),
             'publisher' => fake()->name(),
+            'writer_id' => mt_rand(1, 5)
         ];
     }
 }
