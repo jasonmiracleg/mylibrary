@@ -17,7 +17,8 @@ class ShopFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'shop_name' => fake()->domainName(),
+            'shop_address' => fake()->streetAddress(),
         ];
     }
 }

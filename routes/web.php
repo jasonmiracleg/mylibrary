@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,3 +50,5 @@ Route::view(
 
 Route::get('/library', [BookController::class, 'index']);
 Route::get('/library/{writer}', [BookController::class, 'show']);
+Route::get('/shop', [ShopController::class, 'index']);
+Route::get('/sales', [SalesController::class, 'index']);

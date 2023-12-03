@@ -21,12 +21,12 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
-                ->on('shops')
+                ->on('users')
                 ->onDelete('cascade');
             $table->unsignedBigInteger('book_id');
             $table->foreign('book_id')
                 ->references('id')
-                ->on('users')
+                ->on('books')
                 ->onDelete('cascade');
             $table->integer('book_amount');
             $table->timestamps();

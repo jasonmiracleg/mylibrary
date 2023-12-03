@@ -20,4 +20,9 @@ class Book extends Model
     {
         return $this->belongsTo(Publisher::class, 'publisher_id', 'id');
     }
+
+    public function sold(): HasMany
+    {
+        return $this->hasMany(Sales::class, 'book_id', 'id');
+    }
 }
