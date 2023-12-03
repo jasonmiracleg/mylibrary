@@ -1,6 +1,10 @@
 @extends('layouts.template')
 
 @section('layout_content')
+    <form class="w-25 d-flex" role="search" action="\shop" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -21,4 +25,7 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        {{ $shops->links() }}
+    </div>
 @endsection
