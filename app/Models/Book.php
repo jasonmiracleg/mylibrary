@@ -10,10 +10,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Book extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'synopsis', 'publisher'];
+    protected $fillable = ['title', 'synopsis'];
 
     public function writer(): BelongsTo
     {
         return $this->belongsTo(Writer::class, 'writer_id', 'id');
+    }
+    public function publisher(): BelongsTo
+    {
+        return $this->belongsTo(Publisher::class, 'publisher_id', 'id');
     }
 }

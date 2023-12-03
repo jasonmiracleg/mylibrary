@@ -19,7 +19,7 @@
                     <td>{{ $book['title'] }}</td>
                     <td>{{ $book['synopsis'] }}</td>
                     <td><a href="\library\{{ $book['writer_id'] }}">{{ $book->writer->name }}</a></td>
-                    <td>{{ $book['publisher'] }}</td>
+                    <td>{{ $book->publisher->publisher }}</td>
                 </tr>
                 @php($counter++)
             @endforeach

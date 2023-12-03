@@ -28,5 +28,9 @@ class PublisherSeeder extends Seeder
             'publisher' => 'Wdym',
             'city' => "Europe"
         ]);
+        DB::table('publishers')->insert([
+            'publisher' => 'UCM',
+            'city' => "Absolutely Makassar"
+        ]);
     }
 }

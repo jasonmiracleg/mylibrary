@@ -20,7 +20,7 @@
                     <td>{{ $counter }}</td>
                     <td>{{ $book['title'] }}</td>
                     <td>{{ $book['synopsis'] }}</td>
-                    <td>{{ $book['publisher'] }}</td>
+                    <td>{{ $book->publisher->publisher }}</td>
                 </tr>
                 @php($counter++)
             @endforeach
