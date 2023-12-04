@@ -10,6 +10,8 @@ use App\Models\Sales;
 use App\Models\Writer;
 use App\Models\Publisher;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleSeeder;
+use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,8 +26,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        Model::unguard();
+        $this->call([PublisherSeeder::class, RoleSeeder::class, UserSeeder::class]); // Calling other seeder
+        Model::reguard();
         User::factory(5)->create();
-        $this->call(PublisherSeeder::class); // Calling other seeder
         Writer::factory(5)->create();
         Book::factory(10)->create();
         Shop::factory(10)->create();
