@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\SalesController;
-use App\Http\Controllers\ShopController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SalesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +50,11 @@ Route::view(
     ]
 );
 
-Route::get('/library', [BookController::class, 'index']);
-Route::get('/library/{writer}', [BookController::class, 'show']);
-Route::get('/shop', [ShopController::class, 'index']);
-Route::get('/sales', [SalesController::class, 'index']);
+Route::get('/library', [BookController::class, 'index'])->middleware('auth')->name('library');
+Route::get('/library/{writer}', [BookController::class, 'show'])->middleware('auth');
+Route::get('/shop', [ShopController::class, 'index'])->middleware('auth')->name('shop');
+Route::get('/sales', [SalesController::class, 'index'])->middleware('auth')->name('sales');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
