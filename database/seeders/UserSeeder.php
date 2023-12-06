@@ -17,7 +17,9 @@ class UserSeeder extends Seeder
             'name' => 'Jason',
             'email' => "jasonmiracle@gmail.com",
             'password' => bcrypt('12345678'),
-            'role_id' => 1
+            'role_id' => 1,
+            'is_login' => '0',
+            'is_active' => '1'
         ]);
     }
 }
