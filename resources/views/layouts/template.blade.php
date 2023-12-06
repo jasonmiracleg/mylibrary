@@ -36,12 +36,16 @@
                         <li class="nav-item">
                             <a class="nav-link {{ $activeLibrary ?? '' }}" href="/library">Library</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ $activeShop ?? '' }}" href="/shop">Shops</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ $activeSales ?? '' }}" href="/sales">Sales</a>
-                        </li>
+                        @if (Auth::user()->isAdmin() || Auth::user()->isEditor())
+                            <li class="nav-item">
+                                <a class="nav-link {{ $activeShop ?? '' }}" href="/shop">Shops</a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->isAdmin())
+                            <li class="nav-item">
+                                <a class="nav-link {{ $activeSales ?? '' }}" href="/sales">Sales</a>
+                            </li>
+                        @endif
                     @endauth
                 </ul>
                 <ul class="navbar-nav ms-auto">

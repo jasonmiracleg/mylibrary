@@ -46,22 +46,22 @@ class LoginController extends Controller
         $admin = [
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => 1,
-            'is_active' => 1
+            'role_id' => '1',
+            'is_active' => '1'
         ];
 
         $editor = [
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => 2,
-            'is_active' => 1
+            'role_id' => '2',
+            'is_active' => '1'
         ];
 
         $member = [
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => 3,
-            'is_active' => 1
+            'role_id' => '3',
+            'is_active' => '1'
         ];
 
         if (Auth::attempt($admin)) {

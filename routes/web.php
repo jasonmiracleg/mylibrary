@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ShopController;
-use App\Http\Controllers\SalesController;
+use App\Http\Controllers\Admin\ShopController;
+use App\Http\Controllers\Admin\SalesController;
+use App\Http\Controllers\Editor\ShopController as EditorShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,9 +52,24 @@ Route::view(
 );
 
 Route::get('/library', [BookController::class, 'index'])->middleware('auth')->name('library');
-Route::get('/library/{writer}', [BookController::class, 'show'])->middleware('auth');
-Route::get('/shop', [ShopController::class, 'index'])->middleware('auth')->name('shop');
-Route::get('/sales', [SalesController::class, 'index'])->middleware('auth')->name('sales');
+Route::get('/library/{writer}', [BookController::class, 'show'])->middleware('auth'/*change into certain role if the page is intended specifically to certain role*/);
+
+Route::group([
+    'middleware' => 'admin',
+    'prefix' => 'admin', // Differentiate the route
+    'as' => 'admin.'
+], function () {
+    Route::get('/shop', [ShopController::class, 'index'])->middleware('auth')->name('shop');
+    Route::get('/sales', [SalesController::class, 'index'])->middleware('auth')->name('sales');
+});
+
+Route::group([
+    'middleware' => 'editor',
+    'prefix' => 'editor', // Differentiate the route
+    'as' => 'editor.'
+], function () {
+    Route::get('/shop', [EditorShopController::class, 'index'])->middleware('auth')->name('shop');
+});
 
 Auth::routes();
 
