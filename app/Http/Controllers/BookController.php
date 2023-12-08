@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Writer;
+use App\Models\Publisher;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
-use App\Models\Writer;
 
 class BookController extends Controller
 {
@@ -30,7 +31,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $publishers = Publisher::all();
+        return view('create', compact('publishers'));
     }
 
     /**

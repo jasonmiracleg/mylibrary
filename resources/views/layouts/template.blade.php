@@ -36,14 +36,17 @@
                         <li class="nav-item">
                             <a class="nav-link {{ $activeLibrary ?? '' }}" href="/library">Library</a>
                         </li>
-                        @if (Auth::user()->isAdmin() || Auth::user()->isEditor())
+                        @if (Auth::user()->isEditor())
                             <li class="nav-item">
-                                <a class="nav-link {{ $activeShop ?? '' }}" href="/shop">Shops</a>
+                                <a class="nav-link {{ $activeShop ?? '' }}" href="{{ route('editor.shop') }}">Shops</a>
                             </li>
                         @endif
                         @if (Auth::user()->isAdmin())
                             <li class="nav-item">
-                                <a class="nav-link {{ $activeSales ?? '' }}" href="/sales">Sales</a>
+                                <a class="nav-link {{ $activeSales ?? '' }}" href="{{ route('admin.sales') }}">Sales</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ $activeShop ?? '' }}" href="{{ route('admin.shop') }}">Shops</a>
                             </li>
                         @endif
                     @endauth

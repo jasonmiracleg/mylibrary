@@ -1,6 +1,15 @@
 @extends('layouts.template')
 
 @section('layout_content')
+    <div class="btn-group" role="toolbar" aria-label="Toolbar with Button Groups">
+        <div class="btn-group me-2" role="group" aria-label="Basic Example">
+            <form action="{{ route('book.create') }}" method="GET">
+                <button class="btn btn-primary" href="{{ route('book.create') }}">
+                    Tambah
+                </button>
+            </form>
+        </div>
+    </div>
     <table class="table table-hover">
         <thead>
             <tr>

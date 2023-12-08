@@ -67,7 +67,7 @@ class LoginController extends Controller
         if (Auth::attempt($admin)) {
             $this->isLogin(Auth::id());
             return redirect()->route('library');
-        } else  if (Auth::attempt($admin)) {
+        } else  if (Auth::attempt($editor)) {
             $this->isLogin(Auth::id());
             return redirect()->route('library');
         } else if (Auth::attempt($member)) {

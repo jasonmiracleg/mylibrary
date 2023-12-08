@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Sales;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 
 class SalesController extends Controller
 {
