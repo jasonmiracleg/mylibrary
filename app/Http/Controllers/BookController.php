@@ -7,6 +7,7 @@ use App\Models\Writer;
 use App\Models\Publisher;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -32,7 +33,8 @@ class BookController extends Controller
     public function create()
     {
         $publishers = Publisher::all();
-        return view('create', compact('publishers'));
+        $writers = Writer::all();
+        return view('create', compact('publishers', 'writers'));
     }
 
     /**
@@ -40,7 +42,13 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        //
+        Book::create([
+            'title' => $request->title,
+            'writer_id' => $request->writer,
+            'synopsis' => $request->synopsis,
+            'publisher_id' => $request->publisher
+        ]);
+        return redirect()->route('library');
     }
 
     /**

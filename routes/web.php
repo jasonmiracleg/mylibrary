@@ -61,11 +61,12 @@ Route::group([
     Route::get('/sales', [SalesController::class, 'index'])->name('sales');
     Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 });
-
+Route::get('/create', [BookController::class, 'create'])->middleware('auth')->name('book.create');
 Route::get('/library', [BookController::class, 'index'])->middleware('auth')->name('library');
 Route::get('/library/{writer}', [BookController::class, 'show'])->middleware('auth'/*change into certain role if the page is intended specifically to certain role*/);
-Route::get('/create', [BookController::class, 'create'])->middleware('auth')->name('book.create');
-Route::post('/library/store', [BookController::class, 'store'])->middleware('auth')->name('book.store');
+Route::post('store', [BookController::class, 'store'])->name('store');
+
+
 
 Route::group([
     'middleware' => 'editor',
