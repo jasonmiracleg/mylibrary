@@ -18,6 +18,7 @@
                 <th scope="col">Synopsis</th>
                 <th scope="col">Writer Name</th>
                 <th scope="col">Publisher</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,15 @@
                     <td>{{ $book['synopsis'] }}</td>
                     <td><a href="\library\{{ $book['writer_id'] }}">{{ $book->writer->name }}</a></td>
                     <td>{{ $book->publisher->publisher }}</td>
+                    <td>
+                        <a href="{{ route('edit', $book) }}"><button class="btn btn-info" id="edit"
+                                name="edit">Edit</button></a>
+                        <form action="{{ route('destroy', $book) }}" method="POST">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger" id="delete" name="delete">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @php($counter++)
             @endforeach

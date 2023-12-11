@@ -72,7 +72,10 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $bookEdit = Book::where('id', $book->id)->first();
+        $publishers = Publisher::all();
+        $writers = Writer::all();
+        return view('edit', compact('publishers', 'writers', 'bookEdit'));
     }
 
     /**
@@ -80,7 +83,13 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-        //
+        $book->update([
+            'title' => $request->title,
+            'writer_id' => $request->writer,
+            'synopsis' => $request->synopsis,
+            'publisher_id' => $request->publisher
+        ]);
+        return redirect()->route('library');
     }
 
     /**
@@ -88,6 +97,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('library');
     }
 }
