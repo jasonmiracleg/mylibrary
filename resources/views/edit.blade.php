@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <div class="container">
-            <form action="{{ route('update', $bookEdit) }}" method="POST">
+            <form action="{{ route('library.update', $bookEdit) }}" method="POST">
                 @method('put')
                 @csrf
                 <div class="mb-3">

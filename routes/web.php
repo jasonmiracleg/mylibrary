@@ -61,13 +61,16 @@ Route::group([
     Route::get('/sales', [SalesController::class, 'index'])->name('sales');
     Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 });
-Route::get('/create', [BookController::class, 'create'])->middleware('auth')->name('book.create');
-Route::get('/library', [BookController::class, 'index'])->middleware('auth')->name('library');
-Route::get('/library/{writer}', [BookController::class, 'show'])->middleware('auth'/*change into certain role if the page is intended specifically to certain role*/);
-Route::post('/store', [BookController::class, 'store'])->name('store');
-Route::get('/library/edit/{book}', [BookController::class, 'edit'])->middleware('auth')->name('edit');
-Route::put('/library/update/{book}', [BookController::class, 'update'])->middleware('auth')->name('update');
-Route::delete('/libray/destroy/{book}', [BookController::class, 'destroy'])->middleware('auth')->name('destroy');;
+
+Route::resource('library', BookController::class)->middleware('auth');
+
+// Route::get('/create', [BookController::class, 'create'])->middleware('auth')->name('book.create');
+// Route::get('/library', [BookController::class, 'index'])->middleware('auth')->name('library');
+// Route::get('/library/{writer}', [BookController::class, 'show'])->middleware('auth'/*change into certain role if the page is intended specifically to certain role*/);
+// Route::post('/store', [BookController::class, 'store'])->name('store');
+// Route::get('/library/edit/{book}', [BookController::class, 'edit'])->middleware('auth')->name('edit');
+// Route::put('/library/update/{book}', [BookController::class, 'update'])->middleware('auth')->name('update');
+// Route::delete('/libray/destroy/{book}', [BookController::class, 'destroy'])->middleware('auth')->name('destroy');;
 
 Route::group([
     'middleware' => 'editor',

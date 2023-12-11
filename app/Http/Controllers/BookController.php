@@ -48,7 +48,7 @@ class BookController extends Controller
             'synopsis' => $request->synopsis,
             'publisher_id' => $request->publisher
         ]);
-        return redirect()->route('library');
+        return redirect()->route('library.index');
     }
 
     /**
@@ -70,9 +70,9 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Book $book)
+    public function edit(Book $library)
     {
-        $bookEdit = Book::where('id', $book->id)->first();
+        $bookEdit = Book::where('id', $library->id)->first();
         $publishers = Publisher::all();
         $writers = Writer::all();
         return view('edit', compact('publishers', 'writers', 'bookEdit'));
@@ -81,15 +81,15 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $library)
     {
-        $book->update([
+        $library->update([
             'title' => $request->title,
             'writer_id' => $request->writer,
             'synopsis' => $request->synopsis,
             'publisher_id' => $request->publisher
         ]);
-        return redirect()->route('library');
+        return redirect()->route('library.index');
     }
 
     /**
@@ -98,6 +98,6 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-        return redirect()->route('library');
+        return redirect()->route('library.index');
     }
 }

@@ -3,8 +3,8 @@
 @section('layout_content')
     <div class="btn-group" role="toolbar" aria-label="Toolbar with Button Groups">
         <div class="btn-group me-2" role="group" aria-label="Basic Example">
-            <form action="{{ route('book.create') }}" method="GET">
-                <button class="btn btn-primary" href="{{ route('book.create') }}">
+            <form action="{{ route('library.create') }}" method="GET">
+                <button class="btn btn-primary" href="{{ route('library.create') }}">
                     Tambah
                 </button>
             </form>
@@ -31,9 +31,9 @@
                     <td><a href="\library\{{ $book['writer_id'] }}">{{ $book->writer->name }}</a></td>
                     <td>{{ $book->publisher->publisher }}</td>
                     <td>
-                        <a href="{{ route('edit', $book) }}"><button class="btn btn-info" id="edit"
+                        <a href="{{ route('library.edit', $book) }}"><button class="btn btn-info" id="edit"
                                 name="edit">Edit</button></a>
-                        <form action="{{ route('destroy', $book) }}" method="POST">
+                        <form action="{{ route('library.destroy', $book) }}" method="POST">
                             @method('delete')
                             @csrf
                             <button class="btn btn-danger" id="delete" name="delete">Delete</button>
