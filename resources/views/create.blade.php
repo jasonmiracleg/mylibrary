@@ -13,7 +13,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('library.store') }}" method="POST">
+            <form action="{{ route('library.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Book Title</label>

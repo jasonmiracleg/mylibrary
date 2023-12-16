@@ -46,14 +46,28 @@ class BookController extends Controller
             'title' => 'required|unique:books|max:255',
             'writer' => 'required', // max : 5 (characters),
             'synopsis' => 'required',
-            'publisher' => 'required'
+            'publisher' => 'required',
+            'book_image' => 'image'
         ]);
-        Book::create([
-            'title' => $validatedData['title'],
-            'writer_id' => $validatedData['writer'],
-            'synopsis' => $validatedData['synopsis'],
-            'publisher_id' => $validatedData['publisher']
-        ]);
+
+        if ($request->file('book_image')) {
+            $validatedData['book_image'] = $request->file('book_image')->store('images', ['disk' => 'public']);
+            Book::create([
+                'title' => $validatedData['title'],
+                'writer_id' => $validatedData['writer'],
+                'synopsis' => $validatedData['synopsis'],
+                'publisher_id' => $validatedData['publisher'],
+                'image' => $validatedData['book_image']
+            ]);
+        } else {
+            Book::create([
+                'title' => $validatedData['title'],
+                'writer_id' => $validatedData['writer'],
+                'synopsis' => $validatedData['synopsis'],
+                'publisher_id' => $validatedData['publisher'],
+            ]);
+        }
+
         return redirect()->route('library.index');
     }
 

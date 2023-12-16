@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Book extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'synopsis', 'writer_id', 'publisher_id'];
+    protected $fillable = ['title', 'synopsis', 'writer_id', 'publisher_id', 'book_image'];
 
     public function writer(): BelongsTo
     {

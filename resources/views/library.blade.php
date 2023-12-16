@@ -10,6 +10,9 @@
             </form>
         </div>
     </div>
+    {{-- <div style="max-height: 350px; overflow:hidden">
+        <img src="{{ asset('strorage/' . $namaModel->namaAtributGambar) }}" alt="{{ $namaModel->bebas }}" class="img-fluid">
+    </div> --}}
     <table class="table table-hover">
         <thead>
             <tr>
