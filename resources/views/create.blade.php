@@ -38,7 +38,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="book_image" class="form-label">Upload Book Image</label>
-                    <img src="" alt="" class="img-preview img-fluid mb-3 col-sm-5">
+                    <img class="img-preview img-fluid mb-3 col-sm-5">
                     <input type="file" name="book_image" id="book_image" class="form-control"
                         accept="image/jpg, image/png, image.jpeg" onchange="previewImage()">
                 </div>

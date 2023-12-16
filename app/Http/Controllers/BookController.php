@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Writer;
 use App\Models\Publisher;
-use App\Http\Requests\StoreBookRequest;
-use App\Http\Requests\UpdateBookRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBookRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateBookRequest;
 
 class BookController extends Controller
 {
@@ -57,7 +58,7 @@ class BookController extends Controller
                 'writer_id' => $validatedData['writer'],
                 'synopsis' => $validatedData['synopsis'],
                 'publisher_id' => $validatedData['publisher'],
-                'image' => $validatedData['book_image']
+                'book_image' => $validatedData['book_image']
             ]);
         } else {
             Book::create([
@@ -90,9 +91,9 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Book $library)
+    public function edit(Book $book)
     {
-        $bookEdit = Book::where('id', $library->id)->first();
+        $bookEdit = Book::where('id', $book->id)->first();
         $publishers = Publisher::all();
         $writers = Writer::all();
         return view('edit', compact('publishers', 'writers', 'bookEdit'));
@@ -101,14 +102,37 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookRequest $request, Book $library)
+    public function update(UpdateBookRequest $request, Book $book)
     {
-        $library->update([
-            'title' => $request->title,
-            'writer_id' => $request->writer,
-            'synopsis' => $request->synopsis,
-            'publisher_id' => $request->publisher
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'writer' => 'required', // max : 5 (characters),
+            'synopsis' => 'required',
+            'publisher' => 'required',
+            'book_image' => 'image'
         ]);
+        if ($request->file('book_image')) {
+            if ($book->book_image) {
+                Storage::disk('public')->delete($book->book_image);
+            }
+            $validatedData['book_image'] = $request->file('book_image')->store('images', ['disk' => 'public']);
+
+            $book->update([
+                'title' => $validatedData['title'],
+                'writer_id' => $validatedData['writer'],
+                'synopsis' => $validatedData['synopsis'],
+                'publisher_id' => $validatedData['publisher'],
+                'book_image' => $validatedData['book_image']
+            ]);
+        } else {
+            $book->update([
+                'title' => $validatedData['title'],
+                'writer_id' => $validatedData['writer'],
+                'synopsis' => $validatedData['synopsis'],
+                'publisher_id' => $validatedData['publisher'],
+            ]);
+        }
+
         return redirect()->route('library.index');
     }
 
