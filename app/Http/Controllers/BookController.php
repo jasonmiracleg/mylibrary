@@ -42,11 +42,17 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
+        $validatedData = $request->validate([
+            'title' => 'required|unique:books|max:255',
+            'writer' => 'required', // max : 5 (characters),
+            'synopsis' => 'required',
+            'publisher' => 'required'
+        ]);
         Book::create([
-            'title' => $request->title,
-            'writer_id' => $request->writer,
-            'synopsis' => $request->synopsis,
-            'publisher_id' => $request->publisher
+            'title' => $validatedData['title'],
+            'writer_id' => $validatedData['writer'],
+            'synopsis' => $validatedData['synopsis'],
+            'publisher_id' => $validatedData['publisher']
         ]);
         return redirect()->route('library.index');
     }
